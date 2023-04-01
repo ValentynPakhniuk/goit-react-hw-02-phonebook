@@ -2,13 +2,10 @@ import { Button } from 'components/Button/Button.styled';
 import { Item } from './Item.styled';
 import PropTypes from 'prop-types';
 
-export const ContactList = ({ filter, contacts, handleDelete }) => {
-  const filteredContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(filter.toLowerCase())
-  );
+export const ContactList = ({ contacts, handleDelete }) => {
   return (
     <ul>
-      {filteredContacts.map(contact => {
+      {contacts.map(contact => {
         return (
           <Item contact={contact} key={contact.id}>
             <div>

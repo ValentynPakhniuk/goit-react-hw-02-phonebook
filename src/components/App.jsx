@@ -22,10 +22,12 @@ export class App extends Component {
   };
 
   handleDelete = id => {
-    const newContacts = this.state.contacts.filter(
-      contact => contact.id !== id
-    );
-    this.setState({ contacts: newContacts });
+    this.setState(prevState => {
+      const updatedContacts = prevState.contacts.filter(
+        contact => contact.id !== id
+      );
+      return { contacts: updatedContacts };
+    });
   };
 
   handleFilterChange = e => {
@@ -33,6 +35,9 @@ export class App extends Component {
   };
 
   render() {
+    const filteredContacts = this.state.contacts.filter(contact =>
+      contact.name.toLowerCase().includes(this.state.filter.toLowerCase())
+    );
     return (
       <Container>
         <h1>Phonebook</h1>
@@ -41,9 +46,8 @@ export class App extends Component {
         <h2>Contacts</h2>
         <Filter value={this.state.filter} onChange={this.handleFilterChange} />
         <ContactList
-          contacts={this.state.contacts}
+          contacts={filteredContacts}
           handleDelete={this.handleDelete}
-          filter={this.state.filter}
         />
       </Container>
     );

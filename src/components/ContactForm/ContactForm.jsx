@@ -23,11 +23,6 @@ export class ContactForm extends Component {
       number: this.state.number,
       id: idValue,
     });
-    // this.setState({
-    //   name: '',
-    //   number: '',
-    //   id: '',
-    // });
   };
 
   render() {
